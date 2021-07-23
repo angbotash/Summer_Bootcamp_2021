@@ -1,0 +1,59 @@
+﻿@model SummerBootCampTask.Models.ChatViewModel
+
+<h2>Chat</h2>
+
+@if (Model.Messages.Any())
+{
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Messages)
+            {
+            <tr>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Sender.Name)</b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message.Data)
+                </td>
+                <td>
+                    @if (Model.FriendId == item.Recipient.Id)
+                    {
+                        <a asp-controller="Message" asp-action="Edit" asp-route-id="@item.Message.Id" class="btn btn-outline-dark">Edit</a>
+                    }
+
+                </td>
+                <td>
+                    @if (Model.FriendId == item.Recipient.Id)
+                    {
+                        <a asp-controller="Message" asp-action="Delete" asp-route-id="@item.Message.Id" class="btn btn-danger">Delete</a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>You don't have any messages yet.</h2>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SendMessage">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="FriendId" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">New message</label>
+                <input asp-for="NewMessage.Message.Data" class="form-control" />
+                <span asp-validation-for="NewMessage.Message.Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

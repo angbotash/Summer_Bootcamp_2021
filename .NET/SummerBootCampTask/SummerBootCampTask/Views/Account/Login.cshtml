@@ -1,0 +1,33 @@
+﻿@model SummerBootCampTask.Models.LoginViewModel
+
+<h2>Log in to your account</h2>
+
+<form method="post" asp-action="Login" asp-controller="Account" >
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label><br />
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Password</label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div>
+            <input asp-for="RememberMe" />
+            <label asp-for="RememberMe"></label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Log in" class="btn btn-primary" />
+        </div>
+        <div>
+            <a class="link" asp-controller="Account" asp-action="Register">or create an account</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts { 
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

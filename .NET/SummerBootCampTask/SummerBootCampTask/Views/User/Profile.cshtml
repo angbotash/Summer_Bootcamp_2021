@@ -1,0 +1,12 @@
+﻿@model SummerBootCampTask.Models.UserViewModel
+
+<h4>My profile</h4>
+
+
+<div>
+    <p><b>Email: </b>@Model.Email</p>
+    <p><b>Username: </b> @Model.Name</p>
+    <p><b>Identifier: </b>@Model.UserIdentifier</p>
+    <a asp-controller="User" asp-action="Edit" class="btn btn-primary">Edit</a>
+    <br />
+</div>
